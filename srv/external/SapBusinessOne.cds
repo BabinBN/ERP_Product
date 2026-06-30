@@ -1,0 +1,155 @@
+/* checksum : cb0c533e949af5328e4d6d6f968f512b */
+@cds.external : true
+service SAPB1  {
+  @cds.external : true
+  @open : true
+  type DocumentLine {
+    LineNum : Integer;
+    ItemCode : String;
+    ItemDescription : String;
+    Quantity : Double;
+    UoMCode : String;
+    Price : Double;
+    PriceAfterVAT : Double;
+    Currency : String;
+    DiscountPercent : Double;
+    TaxCode : String;
+    VatGroup : String;
+    LineTotal : Double;
+    TotalForeignCurrency : Double;
+    WarehouseCode : String;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    ShipDate : DateTime;
+    GrossPrice : Double;
+    GrossTotal : Double;
+    LineStatus : String;
+    OpenQuantity : Double;
+    OpenAmount : Double;
+    ProjectCode : String;
+    CostingCode : String;
+  };
+
+  @cds.external : true
+  @cds.persistence.skip : true
+  @open : true
+  entity BusinessPartners {
+    key CardCode : String not null;
+    CardName : String;
+    CurrentAccountBalance : Double;
+    Currency : String;
+    DataVersion : Integer;
+  };
+
+  @cds.external : true
+  @cds.persistence.skip : true
+  @open : true
+  entity PurchaseOrders {
+    key DocEntry : Integer not null;
+    DocNum : Integer;
+    DocType : String;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    DocDate : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    DocDueDate : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    TaxDate : DateTime;
+    CardCode : String;
+    CardName : String;
+    DocStatus : String;
+    NumAtCard : String;
+    DocTotal : Double;
+    DocTotalFc : Double;
+    DocTotalSys : Double;
+    VatSum : Double;
+    VatSumFc : Double;
+    DiscountPercent : Double;
+    DiscountSum : Double;
+    PaidToDate : Double;
+    Comments : String;
+    SalesPersonCode : Integer;
+    Address : String;
+    Address2 : String;
+    ShipToCode : String;
+    PayToCode : String;
+    PaymentGroupCode : Integer;
+    PaymentMethod : String;
+    Currency : String;
+    Series : Integer;
+    WarehouseCode : String;
+    JournalMemo : String;
+    ProjectCode : String;
+    FederalTaxID : String;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    UpdateDate : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    CreateDate : DateTime;
+    DataVersion : Integer;
+    DocumentLines : many DocumentLine;
+  };
+
+  @cds.external : true
+  @cds.persistence.skip : true
+  @open : true
+  entity Items {
+    key ItemCode : String not null;
+    ItemName : String;
+    ForeignName : String;
+    ItemType : String;
+    ItemsGroupCode : Integer;
+    ItemClass : String;
+    PurchaseItem : String;
+    SalesItem : String;
+    InventoryItem : String;
+    PurchasingUoMCode : String;
+    DefaultVendor : String;
+    VendorItemCode : String;
+    LeadTime : Integer;
+    MinOrderQuantity : Double;
+    OrderMultiple : Double;
+    PriceList : Integer;
+    Price : Double;
+    Currency : String;
+    TaxCodeAP : String;
+    TaxCodeAR : String;
+    InventoryUoMCode : String;
+    ManageSerialNumbers : String;
+    ManageBatchNumbers : String;
+    WarehouseCode : String;
+    QuantityOnStock : Double;
+    QuantityOrderedByVendors : Double;
+    QuantityOrderedByCustomers : Double;
+    MinInventory : Double;
+    MaxInventory : Double;
+    RevenuesAccount : String;
+    PurchaseAccount : String;
+    PAReturnAccount : String;
+    Frozen : String;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    FrozenFrom : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    FrozenTo : DateTime;
+    Valid : String;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    ValidFrom : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    ValidTo : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    UpdateDate : DateTime;
+    @odata.Precision : 0
+    @odata.Type : 'Edm.DateTimeOffset'
+    CreateDate : DateTime;
+    DataVersion : Integer;
+  };
+};
+

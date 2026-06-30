@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="SAPB1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+
+            <!-- ============================================================ -->
+            <!-- BusinessPartner                                               -->
+            <!-- ============================================================ -->
+            <EntityType Name="BusinessPartner" OpenType="true">
+                <Key>
+                    <PropertyRef Name="CardCode"/>
+                </Key>
+                <Property Name="CardCode"               Nullable="false" Type="Edm.String"/>
+                <Property Name="CardName"               Type="Edm.String"/>
+                <Property Name="CurrentAccountBalance"  Type="Edm.Double"/>
+                <Property Name="Currency"               Type="Edm.String"/>
+                <Property Name="DataVersion"            Type="Edm.Int32"/>
+            </EntityType>
+
+            <!-- ============================================================ -->
+            <!-- DocumentLine  (ComplexType — embedded in PurchaseOrder)      -->
+            <!-- ============================================================ -->
+            <ComplexType Name="DocumentLine" OpenType="true">
+                <Property Name="LineNum"                Type="Edm.Int32"/>
+                <Property Name="ItemCode"               Type="Edm.String"/>
+                <Property Name="ItemDescription"        Type="Edm.String"/>
+                <Property Name="Quantity"               Type="Edm.Double"/>
+                <Property Name="UoMCode"                Type="Edm.String"/>
+                <Property Name="Price"                  Type="Edm.Double"/>
+                <Property Name="PriceAfterVAT"          Type="Edm.Double"/>
+                <Property Name="Currency"               Type="Edm.String"/>
+                <Property Name="DiscountPercent"        Type="Edm.Double"/>
+                <Property Name="TaxCode"                Type="Edm.String"/>
+                <Property Name="VatGroup"               Type="Edm.String"/>
+                <Property Name="LineTotal"              Type="Edm.Double"/>
+                <Property Name="TotalForeignCurrency"   Type="Edm.Double"/>
+                <Property Name="WarehouseCode"          Type="Edm.String"/>
+                <Property Name="ShipDate"               Type="Edm.DateTimeOffset"/>
+                <Property Name="GrossPrice"             Type="Edm.Double"/>
+                <Property Name="GrossTotal"             Type="Edm.Double"/>
+                <Property Name="LineStatus"             Type="Edm.String"/>
+                <Property Name="OpenQuantity"           Type="Edm.Double"/>
+                <Property Name="OpenAmount"             Type="Edm.Double"/>
+                <Property Name="ProjectCode"            Type="Edm.String"/>
+                <Property Name="CostingCode"            Type="Edm.String"/>
+            </ComplexType>
+
+            <!-- ============================================================ -->
+            <!-- PurchaseOrder                                                 -->
+            <!-- ============================================================ -->
+            <EntityType Name="PurchaseOrder" OpenType="true">
+                <Key>
+                    <PropertyRef Name="DocEntry"/>
+                </Key>
+                <Property Name="DocEntry"               Nullable="false" Type="Edm.Int32"/>
+                <Property Name="DocNum"                 Type="Edm.Int32"/>
+                <Property Name="DocType"                Type="Edm.String"/>
+                <Property Name="DocDate"                Type="Edm.DateTimeOffset"/>
+                <Property Name="DocDueDate"             Type="Edm.DateTimeOffset"/>
+                <Property Name="TaxDate"                Type="Edm.DateTimeOffset"/>
+                <Property Name="CardCode"               Type="Edm.String"/>
+                <Property Name="CardName"               Type="Edm.String"/>
+                <Property Name="DocStatus"              Type="Edm.String"/>
+                <Property Name="NumAtCard"              Type="Edm.String"/>
+                <Property Name="DocTotal"               Type="Edm.Double"/>
+                <Property Name="DocTotalFc"             Type="Edm.Double"/>
+                <Property Name="DocTotalSys"            Type="Edm.Double"/>
+                <Property Name="VatSum"                 Type="Edm.Double"/>
+                <Property Name="VatSumFc"               Type="Edm.Double"/>
+                <Property Name="DiscountPercent"        Type="Edm.Double"/>
+                <Property Name="DiscountSum"            Type="Edm.Double"/>
+                <Property Name="PaidToDate"             Type="Edm.Double"/>
+                <Property Name="Comments"               Type="Edm.String"/>
+                <Property Name="SalesPersonCode"        Type="Edm.Int32"/>
+                <Property Name="Address"                Type="Edm.String"/>
+                <Property Name="Address2"               Type="Edm.String"/>
+                <Property Name="ShipToCode"             Type="Edm.String"/>
+                <Property Name="PayToCode"              Type="Edm.String"/>
+                <Property Name="PaymentGroupCode"       Type="Edm.Int32"/>
+                <Property Name="PaymentMethod"          Type="Edm.String"/>
+                <Property Name="Currency"               Type="Edm.String"/>
+                <Property Name="Series"                 Type="Edm.Int32"/>
+                <Property Name="WarehouseCode"          Type="Edm.String"/>
+                <Property Name="JournalMemo"            Type="Edm.String"/>
+                <Property Name="ProjectCode"            Type="Edm.String"/>
+                <Property Name="FederalTaxID"           Type="Edm.String"/>
+                <Property Name="UpdateDate"             Type="Edm.DateTimeOffset"/>
+                <Property Name="CreateDate"             Type="Edm.DateTimeOffset"/>
+                <!-- Concurrency token -->
+                <Property Name="DataVersion"            Type="Edm.Int32"/>
+                <!-- Line items -->
+                <Property Name="DocumentLines"          Type="Collection(SAPB1.DocumentLine)"/>
+            </EntityType>
+
+            <!-- ============================================================ -->
+            <!-- Item Master                                                   -->
+            <!-- ============================================================ -->
+            <EntityType Name="Item" OpenType="true">
+                <Key>
+                    <PropertyRef Name="ItemCode"/>
+                </Key>
+                <!-- Identity -->
+                <Property Name="ItemCode"               Nullable="false" Type="Edm.String"/>
+                <Property Name="ItemName"               Type="Edm.String"/>
+                <Property Name="ForeignName"            Type="Edm.String"/>
+                <Property Name="ItemType"               Type="Edm.String"/>
+                <Property Name="ItemsGroupCode"         Type="Edm.Int32"/>
+                <Property Name="ItemClass"              Type="Edm.String"/>
+                <!-- Purchasing -->
+                <Property Name="PurchaseItem"           Type="Edm.String"/>
+                <Property Name="SalesItem"              Type="Edm.String"/>
+                <Property Name="InventoryItem"          Type="Edm.String"/>
+                <Property Name="PurchasingUoMCode"      Type="Edm.String"/>
+                <Property Name="DefaultVendor"          Type="Edm.String"/>
+                <Property Name="VendorItemCode"         Type="Edm.String"/>
+                <Property Name="LeadTime"               Type="Edm.Int32"/>
+                <Property Name="MinOrderQuantity"       Type="Edm.Double"/>
+                <Property Name="OrderMultiple"          Type="Edm.Double"/>
+                <!-- Pricing -->
+                <Property Name="PriceList"              Type="Edm.Int32"/>
+                <Property Name="Price"                  Type="Edm.Double"/>
+                <Property Name="Currency"               Type="Edm.String"/>
+                <Property Name="TaxCodeAP"              Type="Edm.String"/>
+                <Property Name="TaxCodeAR"              Type="Edm.String"/>
+                <!-- Inventory -->
+                <Property Name="InventoryUoMCode"       Type="Edm.String"/>
+                <Property Name="ManageSerialNumbers"    Type="Edm.String"/>
+                <Property Name="ManageBatchNumbers"     Type="Edm.String"/>
+                <Property Name="WarehouseCode"          Type="Edm.String"/>
+                <Property Name="QuantityOnStock"        Type="Edm.Double"/>
+                <Property Name="QuantityOrderedByVendors"   Type="Edm.Double"/>
+                <Property Name="QuantityOrderedByCustomers" Type="Edm.Double"/>
+                <Property Name="MinInventory"           Type="Edm.Double"/>
+                <Property Name="MaxInventory"           Type="Edm.Double"/>
+                <!-- GL Accounts -->
+                <Property Name="RevenuesAccount"        Type="Edm.String"/>
+                <Property Name="PurchaseAccount"        Type="Edm.String"/>
+                <Property Name="PAReturnAccount"        Type="Edm.String"/>
+                <!-- Status -->
+                <Property Name="Frozen"                 Type="Edm.String"/>
+                <Property Name="FrozenFrom"             Type="Edm.DateTimeOffset"/>
+                <Property Name="FrozenTo"               Type="Edm.DateTimeOffset"/>
+                <Property Name="Valid"                  Type="Edm.String"/>
+                <Property Name="ValidFrom"              Type="Edm.DateTimeOffset"/>
+                <Property Name="ValidTo"                Type="Edm.DateTimeOffset"/>
+                <Property Name="UpdateDate"             Type="Edm.DateTimeOffset"/>
+                <Property Name="CreateDate"             Type="Edm.DateTimeOffset"/>
+                <!-- Concurrency token -->
+                <Property Name="DataVersion"            Type="Edm.Int32"/>
+            </EntityType>
+
+            <!-- ============================================================ -->
+            <!-- Entity Container                                              -->
+            <!-- ============================================================ -->
+            <EntityContainer Name="ServiceLayer">
+
+                <EntitySet EntityType="SAPB1.BusinessPartner" Name="BusinessPartners">
+                    <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+                        <Collection>
+                            <PropertyPath>DataVersion</PropertyPath>
+                        </Collection>
+                    </Annotation>
+                </EntitySet>
+
+                <EntitySet EntityType="SAPB1.PurchaseOrder" Name="PurchaseOrders">
+                    <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+                        <Collection>
+                            <PropertyPath>DataVersion</PropertyPath>
+                        </Collection>
+                    </Annotation>
+                </EntitySet>
+
+                <EntitySet EntityType="SAPB1.Item" Name="Items">
+                    <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+                        <Collection>
+                            <PropertyPath>DataVersion</PropertyPath>
+                        </Collection>
+                    </Annotation>
+                </EntitySet>
+
+            </EntityContainer>
+
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

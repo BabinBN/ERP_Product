@@ -1,0 +1,18 @@
+{
+  "name": "EnterPrice_Product-cds",
+  "version": "1.0.0",
+  "devDependencies": {
+    "@sap/cds-dk": "^9.7.2",
+    "rimraf": "^5.0.5",
+    "mbt": "^1.2.49"
+  },
+  "dependencies": {},
+  "sapux": [
+    "app/purchase_order"
+  ],
+  "scripts": {
+    "undeploy": "cf undeploy EnterPrice_Product --delete-services --delete-service-keys --delete-service-brokers",
+    "build": "rimraf resources mta_archives && mbt build --mtar archive",
+    "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
+  }
+}

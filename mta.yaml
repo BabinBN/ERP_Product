@@ -1,9 +1,9 @@
 _schema-version: 3.3.0
-ID: ERP_Application
+ID: EnterPrice_Product
 description: A simple CAP project.
 version: 1.0.0-SNAPSHOT
 modules:
-- name: ERP_Application-srv
+- name: EnterPrice_Product-srv
   type: java
   path: srv
   properties:
@@ -11,10 +11,8 @@ modules:
     JBP_CONFIG_SAP_MACHINE_JRE: '{ version: 21.+ }'
     SPRING_PROFILES_ACTIVE: cloud,sandbox
   requires:
-  - name: ERP_Application-destination-service
-  - name: uaa_ERP_Application
-  # requires:
-  # - name: ERP_Application-db
+  - name: EnterPrice_Product-auth
+  - name: EnterPrice_Product-db
   provides:
   - name: srv-api
     properties:
@@ -27,53 +25,52 @@ modules:
     builder: custom
     commands:
     - mvn clean package -DskipTests=true --batch-mode
-# - name: ERP_Application-db-deployer
-#   type: hdb
-#   path: db
-#   requires:
-#   - name: ERP_Application-db
-#   parameters:
-#     buildpack: nodejs_buildpack
-#   build-parameters:
-#     builder: custom
-#     commands:
-#     - npm run build
-- name: ERP_Application-destination-content
+- name: EnterPrice_Product-db-deployer
+  type: hdb
+  path: db
+  requires:
+  - name: EnterPrice_Product-db
+  parameters:
+    buildpack: nodejs_buildpack
+  build-parameters:
+    builder: custom
+    commands:
+    - npm run build
+- name: EnterPrice_Product-destination-content
   type: com.sap.application.content
   requires:
-  - name: ERP_Application-destination-service
+  - name: EnterPrice_Product-destination-service
     parameters:
       content-target: true
-  - name: ERP_Application_html_repo_host
+  - name: EnterPrice_Product_html_repo_host
     parameters:
       service-key:
-        name: ERP_Application_html_repo_host-key
-  - name: uaa_ERP_Application
+        name: EnterPrice_Product_html_repo_host-key
+  - name: EnterPrice_Product-auth
     parameters:
       service-key:
-        name: uaa_ERP_Application-key
-  - name: srv-api
+        name: EnterPrice_Product-auth-key
   parameters:
     content:
       instance:
         destinations:
-        - Name: ERP_Application_ERP_Application_html_repo_host
-          ServiceInstanceName: ERP_Application-html5-app-host-service
-          ServiceKeyName: ERP_Application_html_repo_host-key
-          sap.cloud.service: ERP_Application
+        - Name: BNApprouter_EnterPrice_Product_html_repo_host
+          ServiceInstanceName: EnterPrice_Product-html5-app-host-service
+          ServiceKeyName: EnterPrice_Product_html_repo_host-key
+          sap.cloud.service: BNApprouter
         - Authentication: OAuth2UserTokenExchange
-          Name: ERP_Application_uaa_ERP_Application
-          ServiceInstanceName: ERP_Application-xsuaa-service
-          ServiceKeyName: uaa_ERP_Application-key
-          sap.cloud.service: ERP_Application
-        existing_destinations_policy: update
+          Name: BNApprouter_EnterPrice_Product_auth
+          ServiceInstanceName: EnterPrice_Product-auth
+          ServiceKeyName: EnterPrice_Product-auth-key
+          sap.cloud.service: BNApprouter
+        existing_destinations_policy: ignore
   build-parameters:
     no-source: true
-- name: ERP_Application-app-content
+- name: EnterPrice_Product-app-content
   type: com.sap.application.content
   path: .
   requires:
-  - name: ERP_Application_html_repo_host
+  - name: EnterPrice_Product_html_repo_host
     parameters:
       content-target: true
   build-parameters:
@@ -94,12 +91,25 @@ modules:
     - npm run build:cf
     supported-platforms: []
 resources:
-# - name: ERP_Application-db
-#   type: com.sap.xs.hdi-container
-#   parameters:
-#     service: hana
-#     service-plan: hdi-shared
-- name: ERP_Application-destination-service
+- name: EnterPrice_Product-auth
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      oauth2-configuration:
+        credential-types:
+        - binding-secret
+        - x509
+      tenant-mode: dedicated
+      xsappname: EnterPrice_Product-${org}-${space}
+    path: ./xs-security.json
+    service: xsuaa
+    service-plan: application
+- name: EnterPrice_Product-db
+  type: com.sap.xs.hdi-container
+  parameters:
+    service: hana
+    service-plan: hdi-shared
+- name: EnterPrice_Product-destination-service
   type: org.cloudfoundry.managed-service
   parameters:
     config:
@@ -112,24 +122,26 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
+          - Authentication: NoAuthentication
+            HTML5.DynamicDestination: true
+            HTML5.ForwardAuthToken: true
+            Name: srv-api
+            ProxyType: Internet
+            Type: HTTP
+            URL: ~{srv-api/srv-url}
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
-    service-name: ERP_Application-destination-service
+    service-name: EnterPrice_Product-destination-service
     service-plan: lite
-- name: ERP_Application_html_repo_host
+  requires:
+  - name: srv-api
+- name: EnterPrice_Product_html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: ERP_Application-html5-app-host-service
+    service-name: EnterPrice_Product-html5-app-host-service
     service-plan: app-host
-- name: uaa_ERP_Application
-  type: org.cloudfoundry.managed-service
-  parameters:
-    path: ./xs-security.json
-    service: xsuaa
-    service-name: ERP_Application-xsuaa-service
-    service-plan: application
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

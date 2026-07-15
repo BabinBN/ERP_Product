@@ -22,9 +22,8 @@ sap.ui.require(
     "sap/ui/thirdparty/qunit-2",
     "sap/ui/qunit/qunit-junit",
     "sap/ui/qunit/qunit-coverage",
-    "purchaseorder/test/integration/FirstJourney",
-    "purchaseorder/test/integration/PurchaseOrdersListJourney",
-    "purchaseorder/test/integration/PurchaseOrdersObjectPageJourney",
+    "purchaseorder/test/integration/PurchaseOrdersListJourney.gen",
+    "purchaseorder/test/integration/PurchaseOrdersObjectPageJourney.gen",
 ], function (QUnit) {
     "use strict";
     QUnit.start();

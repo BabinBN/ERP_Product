@@ -27,15 +27,15 @@ sap.ui.define([
         opaTest("Start application", function (Given, When, Then) {
             Given.iStartMyApp();
 
-            Then.onThePurchaseOrdersList.iSeeThisPage();
+            Then.onThePurchaseOrdersListGenerated.iSeeThisPage();
         });
 
 
         // Note: this test will only work if the ListReport page has a search field and shows data that matches the search term. Please ensure that the test data and search term are set up accordingly.
         // opaTest("Perform a global search and check the result", function (Given, When, Then) {
-        //     When.onThePurchaseOrdersList.onFilterBar().iChangeSearchField("Search Term");
-        //     When.onThePurchaseOrdersList.onFilterBar().iExecuteSearch();
-        //     Then.onThePurchaseOrdersList.onTable().iCheckRows();
+        //     When.onThePurchaseOrdersListGenerated.onFilterBar().iChangeSearchField("Search Term");
+        //     When.onThePurchaseOrdersListGenerated.onFilterBar().iExecuteSearch();
+        //     Then.onThePurchaseOrdersListGenerated.onTable().iCheckRows();
         // });
 
 
@@ -44,12 +44,12 @@ sap.ui.define([
         opaTest("Navigate to ObjectPage", function (Given, When, Then) {
             // Note: this test will fail if the ListReport page doesn't show any data
             
-            When.onThePurchaseOrdersList.onFilterBar().iExecuteSearch();
+            When.onThePurchaseOrdersListGenerated.onFilterBar().iExecuteSearch();
             
-            Then.onThePurchaseOrdersList.onTable().iCheckRows();
+            Then.onThePurchaseOrdersListGenerated.onTable().iCheckRows();
 
-            When.onThePurchaseOrdersList.onTable().iPressRow(0);
-            Then.onThePurchaseOrdersObjectPage.iSeeThisPage();
+            When.onThePurchaseOrdersListGenerated.onTable().iPressRow(0);
+            Then.onThePurchaseOrdersObjectPageGenerated.iSeeThisPage();
 
         });
 

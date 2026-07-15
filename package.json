@@ -3,11 +3,14 @@
   "version": "1.0.0",
   "devDependencies": {
     "@sap/cds-dk": "^9.7.2",
-    "rimraf": "^5.0.5",
-    "mbt": "^1.2.49"
+    "mbt": "^1.2.49",
+    "rimraf": "^5.0.5"
   },
   "dependencies": {},
   "sapux": [
+    "app/purchase_order",
+    "app/purchase_order",
+    "app/purchase_order",
     "app/purchase_order"
   ],
   "scripts": {

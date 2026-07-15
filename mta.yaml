@@ -12,7 +12,7 @@ modules:
     SPRING_PROFILES_ACTIVE: cloud,sandbox
   requires:
   - name: EnterPrice_Product-auth
-  - name: EnterPrice_Product-db
+  # - name: EnterPrice_Product-db
   provides:
   - name: srv-api
     properties:
@@ -25,17 +25,17 @@ modules:
     builder: custom
     commands:
     - mvn clean package -DskipTests=true --batch-mode
-- name: EnterPrice_Product-db-deployer
-  type: hdb
-  path: db
-  requires:
-  - name: EnterPrice_Product-db
-  parameters:
-    buildpack: nodejs_buildpack
-  build-parameters:
-    builder: custom
-    commands:
-    - npm run build
+# - name: EnterPrice_Product-db-deployer
+#   type: hdb
+#   path: db
+#   requires:
+#   - name: EnterPrice_Product-db
+#   parameters:
+#     buildpack: nodejs_buildpack
+#   build-parameters:
+#     builder: custom
+#     commands:
+#     - npm run build
 - name: EnterPrice_Product-destination-content
   type: com.sap.application.content
   requires:
@@ -104,11 +104,11 @@ resources:
     path: ./xs-security.json
     service: xsuaa
     service-plan: application
-- name: EnterPrice_Product-db
-  type: com.sap.xs.hdi-container
-  parameters:
-    service: hana
-    service-plan: hdi-shared
+# - name: EnterPrice_Product-db
+#   type: com.sap.xs.hdi-container
+#   parameters:
+#     service: hana
+#     service-plan: hdi-shared
 - name: EnterPrice_Product-destination-service
   type: org.cloudfoundry.managed-service
   parameters:

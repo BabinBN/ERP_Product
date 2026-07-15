@@ -35,3 +35,4 @@ management:
       enabled: true
     db:
       enabled: true
+

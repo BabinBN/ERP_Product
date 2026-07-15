@@ -79,7 +79,7 @@ modules:
     - artifacts:
       - purchaseorder.zip
       name: purchaseorder
-      target-path: resources/
+      target-path: resources/purchaseorder/
 - name: purchaseorder
   type: html5
   path: app/purchase_order

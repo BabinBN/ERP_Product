@@ -24,7 +24,7 @@ service Purchase_order
         };
 }
 
-annotate Purchase_order with @requires :
-[
-    'authenticated-user'
-];
+// annotate Purchase_order with @requires :
+// [
+//     'authenticated-user'
+// ];

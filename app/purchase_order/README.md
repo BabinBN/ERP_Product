@@ -1,15 +1,15 @@
 ## Application Details
 |               |
 | ------------- |
-|**Generation Date and Time**<br>Wed Jul 15 2026 06:22:34 GMT+0000 (Coordinated Universal Time)|
+|**Generation Date and Time**<br>Wed Jul 29 2026 09:52:53 GMT+0000 (Coordinated Universal Time)|
 |**App Generator**<br>SAP Fiori Application Generator|
-|**App Generator Version**<br>1.28.0|
+|**App Generator Version**<br>1.29.0|
 |**Generation Platform**<br>SAP Business Application Studio|
 |**Template Used**<br>List Report Page V4|
 |**Service Type**<br>Local CAP|
 |**Service URL**<br>http://localhost:4004/odata/v4/service/Purchase_order/|
 |**Module Name**<br>purchase_order|
-|**Application Title**<br>Sap Business One|
+|**Application Title**<br>App Title|
 |**Namespace**<br>|
 |**UI5 Theme**<br>sap_horizon|
 |**UI5 Version**<br>1.150.0|

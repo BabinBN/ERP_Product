@@ -62,16 +62,16 @@
 		</dependency>
 	   
 	   <dependency>
-    <groupId>com.sap.cloud.sdk.cloudplatform</groupId>
-    <artifactId>cloudplatform-connectivity</artifactId>
-    <version>5.31.0</version>
-</dependency>
+			<groupId>com.sap.cloud.sdk.cloudplatform</groupId>
+			<artifactId>cloudplatform-connectivity</artifactId>
+			<version>5.31.0</version>
+		</dependency>
 
-<dependency>
-    <groupId>com.sap.cloud.sdk.cloudplatform</groupId>
-    <artifactId>connectivity-destination-service</artifactId>
-    <version>5.31.0</version>
-</dependency>
+		<dependency>
+			<groupId>com.sap.cloud.sdk.cloudplatform</groupId>
+			<artifactId>connectivity-destination-service</artifactId>
+			<version>5.31.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>

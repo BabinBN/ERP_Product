@@ -26,9 +26,7 @@ sap.ui.define([
 
         opaTest("Navigate to PurchaseOrdersObjectPageObjectPage", function (Given, When, Then) {
             Given.iStartMyApp();
-
             When.onThePurchaseOrdersListGenerated.onFilterBar().iExecuteSearch();
-
             Then.onThePurchaseOrdersListGenerated.onTable().iCheckRows();
             When.onThePurchaseOrdersListGenerated.onTable().iPressRow(0);
 

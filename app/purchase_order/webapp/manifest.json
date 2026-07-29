@@ -12,8 +12,8 @@
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:lrop",
-      "version": "1.28.0",
-      "toolsId": "6e910ed7-fdeb-4f36-9f65-6d1688dd5efd"
+      "version": "1.29.0",
+      "toolsId": "efb4f270-8ea0-4911-a6e0-94c4eb32183c"
     },
     "dataSources": {
       "mainService": {
@@ -159,6 +159,6 @@
   },
   "sap.cloud": {
     "public": true,
-    "service": "BNApprouter"
+    "service": "ERP_Application"
   }
 }

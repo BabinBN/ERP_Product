@@ -5,7 +5,7 @@ sap.ui.define([
 ], function (JourneyRunner, PurchaseOrdersListGenerated, PurchaseOrdersObjectPageGenerated) {
     'use strict';
 
-    var runner = new JourneyRunner({
+    const runner = new JourneyRunner({
         launchUrl: sap.ui.require.toUrl('purchaseorder') + '/test/flpSandbox.html#purchaseorder-tile',
         pages: {
 			onThePurchaseOrdersListGenerated: PurchaseOrdersListGenerated,

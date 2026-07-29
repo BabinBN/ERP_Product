@@ -1,6 +1,7 @@
 using { SAPB1 as external } from './external/SapBusinessOne';
 
 @path : '/service/Purchase_order'
+@requires: 'authenticated-user'
 service Purchase_order
 {
     @cds.redirection.target

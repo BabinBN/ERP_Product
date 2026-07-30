@@ -5,11 +5,6 @@ annotate service.PurchaseOrders with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'DocEntry',
-                Value : DocEntry,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'DocNum',
                 Value : DocNum,
             },
@@ -35,16 +30,6 @@ annotate service.PurchaseOrders with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'CardCode',
-                Value : CardCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'CardName',
-                Value : CardName,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'DocStatus',
                 Value : DocStatus,
             },
@@ -55,83 +40,8 @@ annotate service.PurchaseOrders with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'DocTotal',
-                Value : DocTotal,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'DocTotalFc',
-                Value : DocTotalFc,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'DiscountPercent',
-                Value : DiscountPercent,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'DiscountSum',
-                Value : DiscountSum,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'PaidToDate',
-                Value : PaidToDate,
-            },
-            {
-                $Type : 'UI.DataField',
                 Label : 'Comments',
                 Value : Comments,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'SalesPersonCode',
-                Value : SalesPersonCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Address',
-                Value : Address,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Address2',
-                Value : Address2,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'ShipToCode',
-                Value : ShipToCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'PayToCode',
-                Value : PayToCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'PaymentGroupCode',
-                Value : PaymentGroupCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'PaymentMethod',
-                Value : PaymentMethod,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'Currency',
-                Value : Currency,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'WarehouseCode',
-                Value : WarehouseCode,
-            },
-            {
-                $Type : 'UI.DataField',
-                Label : 'ProjectCode',
-                Value : ProjectCode,
             },
         ],
     },
@@ -142,33 +52,229 @@ annotate service.PurchaseOrders with @(
             Label : 'General Information',
             Target : '@UI.FieldGroup#GeneratedGroup',
         },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Vendor & Addresses',
+            ID : 'VendorAddresses',
+            Target : '@UI.FieldGroup#VendorAddresses',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Payment Details',
+            ID : 'PaymentDetails',
+            Target : '@UI.FieldGroup#PaymentDetails',
+        },
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Logistics',
+            ID : 'Logistics',
+            Target : '@UI.FieldGroup#Logistics',
+        },
     ],
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'DocEntry',
-            Value : DocEntry,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'DocNum',
             Value : DocNum,
+            Label : 'Purchase Order No.',
         },
         {
             $Type : 'UI.DataField',
-            Label : 'DocType',
-            Value : DocType,
+            Value : CardCode,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'DocDate',
+            Value : CardName,
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : Address,
+            Label : 'Address',
+        },
+        {
+            $Type : 'UI.DataField',
             Value : DocDate,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'DocDueDate',
-            Value : DocDueDate,
+            Value : Currency,
+            Label : 'Currency',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : DocTotal,
+            Label : 'DocTotal',
         },
     ],
-);
+    UI.HeaderFacets : [
+        {
+            $Type : 'UI.ReferenceFacet',
+            Label : 'Purchase Order Overview',
+            ID : 'PurchaseOrderOverview',
+            Target : '@UI.FieldGroup#PurchaseOrderOverview',
+        },
+    ],
+    UI.FieldGroup #PurchaseOrderOverview : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : DocNum,
+                Label : 'Purchase Order No.',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CardName,
+                Label : 'Vendor Name',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CardCode,
+                Label : 'Vendor Code',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DocStatus,
+                Label : 'Status',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DocDate,
+                Label : 'Posting Date',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DocDueDate,
+                Label : 'Delivery Date',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DocTotal,
+                Label : 'Total Amount',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Currency,
+                Label : 'Currency',
+            },
+        ],
+    },
+    UI.FieldGroup #VendorAddresses : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : CardCode,
+                Label : 'CardCode',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : CardName,
+                Label : 'CardName',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Address,
+                Label : 'Address',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Address2,
+                Label : 'Address2',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ShipToCode,
+                Label : 'ShipToCode',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PayToCode,
+                Label : 'PayToCode',
+            },
+        ],
+    },
+    UI.FieldGroup #PaymentDetails : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : PaymentGroupCode,
+                Label : 'PaymentGroupCode',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PaymentMethod,
+                Label : 'PaymentMethod',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : Currency,
+                Label : 'Currency',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DiscountPercent,
+                Label : 'DiscountPercent',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : DiscountSum,
+                Label : 'DiscountSum',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : PaidToDate,
+                Label : 'PaidToDate',
+            },
+        ],
+    },
+    UI.FieldGroup #Logistics : {
+        $Type : 'UI.FieldGroupType',
+        Data : [
+            {
+                $Type : 'UI.DataField',
+                Value : WarehouseCode,
+                Label : 'WarehouseCode',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : ProjectCode,
+                Label : 'ProjectCode',
+            },
+            {
+                $Type : 'UI.DataField',
+                Value : SalesPersonCode,
+                Label : 'SalesPersonCode',
+            },
+        ],
+    },
+    UI.SelectionFields : [
+        CardCode,
+        CardName,
+        DocDate,
+        DocType,
+    ],
+    UI.HeaderInfo : {
+        ImageUrl : CardCode,
+        TypeName : '',
+        TypeNamePlural : '',
+        TypeImageUrl : 'sap-icon://customer',
+    },
+    );
+
+annotate service.PurchaseOrders with {
+    CardCode @Common.Label : 'CardCode'
+};
+
+annotate service.PurchaseOrders with {
+    CardName @Common.Label : 'CardName'
+};
+
+annotate service.PurchaseOrders with {
+    DocDate @Common.Label : 'DocDate'
+};
+
+annotate service.PurchaseOrders with {
+    DocType @Common.Label : 'DocType'
+};
 

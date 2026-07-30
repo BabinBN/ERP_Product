@@ -1,0 +1,1 @@
+using PurchaseAnalyticsService as service from '../../srv/purchase-analytics-service';

@@ -1,7 +1,7 @@
 {
   "_version": "1.86.0",
   "sap.app": {
-    "id": "purchase",
+    "id": "purchaseorderanalytics",
     "type": "application",
     "i18n": "i18n/i18n.properties",
     "applicationVersion": {
@@ -11,13 +11,13 @@
     "description": "{{appDescription}}",
     "resources": "resources.json",
     "sourceTemplate": {
-      "id": "@sap/generator-fiori:lrop",
+      "id": "@sap/generator-fiori:alp",
       "version": "1.29.0",
-      "toolsId": "aa7b0315-1a81-48a6-bb3f-982d2b96665b"
+      "toolsId": "98d5ef80-ad19-45f4-bc07-10407f81f80b"
     },
     "dataSources": {
       "mainService": {
-        "uri": "/odata/v4/service/Purchase_order/",
+        "uri": "/odata/v4/service/Purchase_Analytics/",
         "type": "OData",
         "settings": {
           "annotations": [],
@@ -27,11 +27,11 @@
     },
     "crossNavigation": {
       "inbounds": {
-        "PurchaseOrder-manageOrder": {
-          "semanticObject": "PurchaseOrder",
-          "action": "manageOrder",
-          "title": "{{PurchaseOrder-manageOrder.flpTitle}}",
-          "subTitle": "{{PurchaseOrder-manageOrder.flpSubtitle}}",
+        "PurchaseOrder_Analytics-managepo_analytics": {
+          "semanticObject": "PurchaseOrder_Analytics",
+          "action": "managepo_analytics",
+          "title": "{{PurchaseOrder_Analytics-managepo_analytics.flpTitle}}",
+          "subTitle": "{{PurchaseOrder_Analytics-managepo_analytics.flpSubtitle}}",
           "signature": {
             "parameters": {},
             "additionalParameters": "allowed"
@@ -63,8 +63,7 @@
       "libs": {
         "sap.m": {},
         "sap.ui.core": {},
-        "sap.fe.templates": {},
-        "sap.f": {}
+        "sap.fe.templates": {}
       }
     },
     "contentDensities": {
@@ -75,7 +74,7 @@
       "i18n": {
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
-          "bundleName": "purchase.i18n.i18n"
+          "bundleName": "purchaseorderanalytics.i18n.i18n"
         }
       },
       "": {
@@ -96,95 +95,80 @@
       "css": []
     },
     "routing": {
-      "config": {
-        "flexibleColumnLayout": {
-          "defaultTwoColumnLayoutType": "TwoColumnsMidExpanded",
-          "defaultThreeColumnLayoutType": "ThreeColumnsMidExpanded"
-        },
-        "routerClass": "sap.f.routing.Router"
-      },
+      "config": {},
       "routes": [
         {
           "pattern": ":?query:",
-          "name": "PurchaseOrdersList",
-          "target": [
-            "PurchaseOrdersList"
-          ]
+          "name": "PurchaseOrdersAnalyticsList",
+          "target": "PurchaseOrdersAnalyticsList"
         },
         {
-          "pattern": "PurchaseOrders({key}):?query:",
-          "name": "PurchaseOrdersObjectPage",
-          "target": [
-            "PurchaseOrdersList",
-            "PurchaseOrdersObjectPage"
-          ]
+          "pattern": "PurchaseOrdersAnalytics({key}):?query:",
+          "name": "PurchaseOrdersAnalyticsObjectPage",
+          "target": "PurchaseOrdersAnalyticsObjectPage"
         }
       ],
       "targets": {
-        "PurchaseOrdersList": {
+        "PurchaseOrdersAnalyticsList": {
           "type": "Component",
-          "id": "PurchaseOrdersList",
+          "id": "PurchaseOrdersAnalyticsList",
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/PurchaseOrders",
+              "contextPath": "/PurchaseOrdersAnalytics",
               "variantManagement": "Page",
               "navigation": {
-                "PurchaseOrders": {
+                "PurchaseOrdersAnalytics": {
                   "detail": {
-                    "route": "PurchaseOrdersObjectPage"
+                    "route": "PurchaseOrdersAnalyticsObjectPage"
                   }
                 }
               },
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "ResponsiveTable",
-                    "personalization": {
-                      "group": true,
-                      "sort": true,
-                      "filter": true
-                    },
+                    "type": "AnalyticalTable",
                     "selectionMode": "Multi"
                   }
                 }
+              },
+              "views": {
+                "paths": [
+                  {
+                    "primary": [
+                      {
+                        "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
+                      }
+                    ],
+                    "secondary": [
+                      {
+                        "annotationPath": "com.sap.vocabularies.UI.v1.LineItem"
+                      }
+                    ],
+                    "defaultPath": "both"
+                  }
+                ]
               }
             }
-          },
-          "controlAggregation": "beginColumnPages",
-          "contextPattern": ""
+          }
         },
-        "PurchaseOrdersObjectPage": {
+        "PurchaseOrdersAnalyticsObjectPage": {
           "type": "Component",
-          "id": "PurchaseOrdersObjectPage",
+          "id": "PurchaseOrdersAnalyticsObjectPage",
           "name": "sap.fe.templates.ObjectPage",
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/PurchaseOrders",
-              "content": {
-                "header": {
-                  "anchorBarVisible": true,
-                  "visible": true
-                }
-              }
+              "contextPath": "/PurchaseOrdersAnalytics"
             }
-          },
-          "controlAggregation": "midColumnPages",
-          "contextPattern": "/PurchaseOrders({key})"
+          }
         }
       }
-    },
-    "rootView": {
-      "viewName": "sap.fe.templates.RootContainer.view.Fcl",
-      "type": "XML",
-      "async": true,
-      "id": "appRootView"
     }
   },
   "sap.fiori": {
     "registrationIds": [],
-    "archeType": "transactional"
+    "archeType": "analytical"
   },
   "sap.fe": {
     "app": {

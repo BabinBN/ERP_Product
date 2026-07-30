@@ -15,7 +15,8 @@
     "app/purchase_order",
     "app/purchase_order",
     "app/purchase_order",
-    "app/purchase"
+    "app/purchase",
+    "app/purchase_order_analytics"
   ],
   "scripts": {
     "undeploy": "cf undeploy EnterPrice_Product --delete-services --delete-service-keys --delete-service-brokers",

@@ -7,8 +7,8 @@
           "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
           "org": "208a88e0trial",
           "space": "dev",
-          "instance": "SapB1",
-          "key": "SapB1-key"
+          "instance": "EnterPrice_Product-destination-service",
+          "key": "EnterPrice_Product-destination-service-key"
         },
         "kind": "destinations",
         "vcap": {

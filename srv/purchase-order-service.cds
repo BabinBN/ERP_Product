@@ -1,11 +1,11 @@
 using { SAPB1 as external } from './external/SapBusinessOne';
 
 @path : '/service/Purchase_order'
-@requires: 'authenticated-user'
+@requires: 'any'
 service Purchase_order
 {
     @cds.redirection.target
-    @odata.draft.enabled
+    // @odata.draft.enabled
     entity PurchaseOrders as
         projection on external.PurchaseOrders
         {

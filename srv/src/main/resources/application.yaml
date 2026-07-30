@@ -18,6 +18,11 @@ cds:
           name: SAPB1
         type: odata-v4
 ---
+cds:
+  security:
+    authentication:
+      authConfig:
+        enabled: false
 management:
   endpoint:
     health:

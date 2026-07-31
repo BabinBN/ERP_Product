@@ -14,6 +14,20 @@
         "vcap": {
           "name": "destinations"
         }
+      },
+      "db": {
+        "binding": {
+          "type": "cf",
+          "apiEndpoint": "https://api.cf.us10-001.hana.ondemand.com",
+          "org": "208a88e0trial",
+          "space": "dev",
+          "instance": "EnterPrice_Product-db",
+          "key": "EnterPrice_Product-db-key"
+        },
+        "kind": "hana-cloud",
+        "vcap": {
+          "name": "db"
+        }
       }
     }
   }

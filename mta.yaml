@@ -73,6 +73,10 @@ modules:
       - purchaseorderanalytics.zip
       name: purchaseorderanalytics
       target-path: resources/
+    - artifacts:
+      - employees.zip
+      name: employees
+      target-path: resources/
 - name: purchase
   type: html5
   path: app/purchase
@@ -86,6 +90,16 @@ modules:
 - name: purchaseorderanalytics
   type: html5
   path: app/purchase_order_analytics
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: employees
+  type: html5
+  path: app/employees
   build-parameters:
     build-result: dist
     builder: custom

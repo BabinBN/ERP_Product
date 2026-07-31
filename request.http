@@ -1,0 +1,16 @@
+
+### Create Employee
+POST http://localhost:8080/odata/v4/service/local/Employees
+Content-Type: application/json
+
+{
+  "empCode": "E001",
+  "empName": "Babin",
+  "department": "IT",
+  "salary": 50000
+}
+
+### Get Employees
+GET http://localhost:8080/odata/v4/service/local/Employees
+Accept: application/json
+

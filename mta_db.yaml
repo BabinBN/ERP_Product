@@ -12,7 +12,7 @@ modules:
     SPRING_PROFILES_ACTIVE: cloud,sandbox
   requires:
   - name: EnterPrice_Product-auth
-  - name: EnterPrice_Product-db
+  - name: -dbEnterPrice_Product
   provides:
   - name: srv-api
     properties:

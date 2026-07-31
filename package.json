@@ -2,11 +2,13 @@
   "name": "EnterPrice_Product-cds",
   "version": "1.0.0",
   "devDependencies": {
-    "@sap/cds-dk": "^9.7.2",
+    "@cap-js/hana": "^2.8.0",
+    "@sap/cds": "^9.3.0",
+    "@sap/cds-dk": "^9.3.0",
+    "@sap/cds-foss": "^5.0.2",
     "mbt": "^1.2.49",
     "rimraf": "^5.0.5"
   },
-  "dependencies": {},
   "sapux": [
     "app/purchase_order",
     "app/purchase_order",
@@ -16,7 +18,8 @@
     "app/purchase_order",
     "app/purchase_order",
     "app/purchase",
-    "app/purchase_order_analytics"
+    "app/purchase_order_analytics",
+    "app/employees"
   ],
   "scripts": {
     "undeploy": "cf undeploy EnterPrice_Product --delete-services --delete-service-keys --delete-service-brokers",

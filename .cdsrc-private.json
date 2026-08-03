@@ -24,7 +24,7 @@
           "instance": "EnterPrice_Product-db",
           "key": "EnterPrice_Product-db-key"
         },
-        "kind": "hana-cloud",
+        "kind": "hana",
         "vcap": {
           "name": "db"
         }

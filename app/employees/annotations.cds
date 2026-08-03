@@ -60,6 +60,26 @@ annotate service.Employees with @(
             Label : 'salary',
             Value : salary,
         },
+        {
+            $Type : 'UI.DataField',
+            Value : projects.customer,
+            Label : 'customer',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : projects.budget,
+            Label : 'budget',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : projects.projectCode,
+            Label : 'projectCode',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : projects.projectName,
+            Label : 'projectName',
+        },
     ],
     UI.SelectionFields : [
         empCode,
@@ -99,6 +119,16 @@ annotate service.Employees with @(
         },
         Text : 'Table View 1',
     },
+    UI.HeaderInfo : {
+        Title : {
+            $Type : 'UI.DataField',
+            Value : empName,
+        },
+        TypeName : '',
+        TypeNamePlural : '',
+        ImageUrl : empCode,
+        Initials : department,
+    },
 );
 
 annotate service.Employees with {
@@ -106,7 +136,10 @@ annotate service.Employees with {
 };
 
 annotate service.Employees with {
-    department @Common.Label : 'department'
+    department @(
+        Common.Label : 'department',
+        UI.IsImageURL : true,
+    )
 };
 
 annotate service.Employees with {

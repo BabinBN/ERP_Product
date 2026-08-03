@@ -1,9 +1,6 @@
 namespace ERP_Product;
 
-using {
-    cuid,
-    managed
-} from '@sap/cds/common';
+using {cuid,managed} from '@sap/cds/common';
 
 entity Employees : cuid, managed {
     department : String(50);
